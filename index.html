@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
         integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 
-    <title>Document</title>
+    <title>Weather App</title>
 </head>
 
 <body>
@@ -25,37 +25,36 @@
             <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
         </nav>
 
-        <div class="row big-row" >
+        <div class="row big-row">
+            <!-- aside (search bar and city list) -->
             <div class="col-md-3">
-            <aside>
-                <label class="city-search">Search for a City:</label>
-                <form>
-                    <input placeholder="Philadelphia">
-                    <button><i class="fas fa-search"></i></button>
-                </form>
-                <ul class="list-group">
-                    <li class="list-group-item active">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                  </ul>
-
-            </aside>
+                <aside>
+                    <label class="city-search">Search for a City:</label>
+                    <form>
+                        <input placeholder="Philadelphia" id="city-input">
+                        <button id="search-button"><i class="fas fa-search"></i></button>
+                    </form>
+                    <ul class="list-group">
+                        <li class="list-group-item active">Cras justo odio</li>
+                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                        <li class="list-group-item">Morbi leo risus</li>
+                        <li class="list-group-item">Porta ac consectetur ac</li>
+                    </ul>
+                </aside>
             </div>
-
+            <!-- city and five day forecast -->
             <div class="col-md-9">
                 <div class="row">
                     <div class="big-card card bg-dark text-white">
                         <img src="https://via.placeholder.com/1300x400" class="card-img" alt="...">
                         <div class="card-img-overlay">
-                          <h5 class="card-title">City Name</h5>
-                          <p class="card-text">Temperature</p>
-                          <p class="card-text">Humidity</p>
-                          <p class="card-text">Wind Speed</p>
-                          <p class="card-text">UV Index</p>
+                            <h2 class="card-title" id="city-name">City Name</h2>
+                            <p class="card-text" id="#temp">Temperature</p>
+                            <p class="card-text" id="#humidity">Humidity</p>
+                            <p class="card-text" id="#wind">Wind Speed</p>
+                            <p class="card-text" id="#UV">UV Index</p>
                         </div>
-                      </div>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -65,56 +64,118 @@
                     <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
                         <div class="card-header">9/12/2020</div>
                         <div class="card-body">
-                          <p class="card-text">Icon</p>
-                          <p class="card-text">Temp: 72.5 F </p>
-                          <p class="card-text">Humidity: 14%</p>
+                            <p class="card-text">Icon</p>
+                            <p class="card-text">Temp: 72.5 F </p>
+                            <p class="card-text">Humidity: 14%</p>
                         </div>
-                      </div>
+                    </div>
 
-                      <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
                         <div class="card-header">9/12/2020</div>
                         <div class="card-body">
-                          <p class="card-text">Icon</p>
-                          <p class="card-text">Temp: 72.5 F </p>
-                          <p class="card-text">Humidity: 14%</p>
+                            <p class="card-text">Icon</p>
+                            <p class="card-text">Temp: 72.5 F </p>
+                            <p class="card-text">Humidity: 14%</p>
                         </div>
-                      </div>
-                      
-                      <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
-                        <div class="card-header">9/12/2020</div>
-                        <div class="card-body">
-                          <p class="card-text">Icon</p>
-                          <p class="card-text">Temp: 72.5 F </p>
-                          <p class="card-text">Humidity: 14%</p>
-                        </div>
-                      </div>
+                    </div>
 
-                      <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
                         <div class="card-header">9/12/2020</div>
                         <div class="card-body">
-                          <p class="card-text">Icon</p>
-                          <p class="card-text">Temp: 72.5 F </p>
-                          <p class="card-text">Humidity: 14%</p>
+                            <p class="card-text">Icon</p>
+                            <p class="card-text">Temp: 72.5 F </p>
+                            <p class="card-text">Humidity: 14%</p>
                         </div>
-                      </div>
+                    </div>
 
-                      <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
                         <div class="card-header">9/12/2020</div>
                         <div class="card-body">
-                          <p class="card-text">Icon</p>
-                          <p class="card-text">Temp: 72.5 F </p>
-                          <p class="card-text">Humidity: 14%</p>
+                            <p class="card-text">Icon</p>
+                            <p class="card-text">Temp: 72.5 F </p>
+                            <p class="card-text">Humidity: 14%</p>
                         </div>
-                      </div>
+                    </div>
+
+                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                        <div class="card-header">9/12/2020</div>
+                        <div class="card-body">
+                            <p class="card-text">Icon</p>
+                            <p class="card-text">Temp: 72.5 F </p>
+                            <p class="card-text">Humidity: 14%</p>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
+
     </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
     <script type="text/javascript">
 
+
+
+
+
+
+
+
+
+
+        // // This is our API key. Add your own API key between the ""
+        // var APIKey = "03de5e028a39ba0da41025c49291b0de";
+
+        // // Here we are building the URL we need to query the database
+        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
+
+        
+        var cityName = $("#city-name");
+        var temp = $("#temp");
+        var humidity = $("#humidity");
+        var wind = $("#wind");
+        var UV = $("#UV");
+
+        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="" cityName "&appid=" + APIKey;
+
+
+        function renderLastRegistered() {
+            var storedCity= localStorage.getItem("city-input");
+            cityName.text(storedCity);
+            
+        }
+
+        $("#search-button").on("click", function () {
+            event.preventDefault();
+
+            var cityInput = $("#city-input").val();
+
+            localStorage.setItem("city-input", cityInput);
+            renderLastRegistered();
+            
+
+
+            // // We then created an AJAX call
+            // $.ajax({
+            //     url: queryURL,
+            //     method: "GET"
+            // }).then(function (response) {
+
+            //     console.log(response);
+            //     console.log(response.name);
+            //     console.log("temp: " + response.main.temp);
+            //     console.log("humidity: "+response.main.humidity);
+            //     console.log("wind: "+response.wind.speed);
+
+
+
+            //     // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+
+
+            // });
+
+        });
 
 
     </script>
