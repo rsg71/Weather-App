@@ -49,10 +49,10 @@
                         <img src="https://via.placeholder.com/1300x400" class="card-img" alt="...">
                         <div class="card-img-overlay">
                             <h2 class="card-title" id="city-name">City Name</h2>
-                            <p class="card-text" id="#temp">Temperature</p>
-                            <p class="card-text" id="#humidity">Humidity</p>
-                            <p class="card-text" id="#wind">Wind Speed</p>
-                            <p class="card-text" id="#UV">UV Index</p>
+                            <p class="card-text" id="temperature">Temperature</p>
+                            <p class="card-text" id="humidity">Humidity</p>
+                            <p class="card-text" id="wind">Wind Speed</p>
+                            <p class="card-text" id="UV">UV Index</p>
                         </div>
                     </div>
                 </div>
@@ -118,22 +118,16 @@
         // // This is our API key. Add your own API key between the ""
         var APIKey = "03de5e028a39ba0da41025c49291b0de";
 
-        // // Here we are building the URL we need to query the database
-        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
+        
 
         var cityName = $("#city-name");
+        var temperature = $("#temperature");
+        var humidity = $("#humidity");
+        var wind = $("#wind");
+        var UV = $("#UV");
 
-
-        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
-
-
-        function renderWeatherData() {
-            var storedCity = localStorage.getItem("city-input");
-            cityName.text(storedCity);
-
-
-
-        }
+        
+        
 
         $("#search-button").on("click", function () {
             event.preventDefault();
@@ -141,7 +135,7 @@
             var cityInput = $("#city-input").val();
 
             localStorage.setItem("city-input", cityInput);
-            renderWeatherData();
+            // renderWeatherData();
 
             var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
 
@@ -156,19 +150,51 @@
                 console.log("humidity: " + response.main.humidity);
                 console.log("wind: " + response.wind.speed);
 
-                var temp = $("#temp");
-                var humidity = $("#humidity");
-                var wind = $("#wind");
-                var UV = $("#UV");
 
-                localStorage.setItem("temp",response.main.temp)
-                localStorage.setItem("humidity", response.main.humidity);
-                localStorage.setItem("wind",response.wind.speed);
+                var cityNameEl = response.name;
+                cityName.text(cityNameEl);
 
 
+                var tempEl = response.main.temp;
+                temperature.text("Temperature: " + tempEl + " °F");
+
+                var humidityEl = response.main.humidity;
+                humidity.text("Humidity: " + humidityEl + "%");
+
+                var windEl = response.wind.speed;
+                wind.text("Wind Speed: " + windEl + " mph");
+
+                // var temp = $("#temp");
+                // var humidity = $("#humidity");
+                // var wind = $("#wind");
+                // var UV = $("#UV");
+
+                // localStorage.setItem("temp", response.main.temp)
+                // localStorage.setItem("humidity", response.main.humidity);
+                // localStorage.setItem("wind", response.wind.speed);
+                
+                
+               
             });
 
             //     // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
+
+            function renderWeatherData() {
+            //     var storedCity = localStorage.getItem("city-input");
+            //     cityName.text(storedCity);
+
+            //     var storedTemp = localStorage.getItem("temp");
+            //     temp.text(storedTemp);
+            
+            //     var storedHumidity = localStorage.getItem("humidity");
+            //     humidity.text(storedHumidity);
+
+            //     var storedWind = localStorage.getItem("wind");
+            // wind.text(storedWind);
+
+
+            }
+                renderWeatherData();
 
         });
 
