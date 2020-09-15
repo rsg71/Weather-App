@@ -117,17 +117,13 @@
 
         // // This is our API key. Add your own API key between the ""
         var APIKey = "03de5e028a39ba0da41025c49291b0de";
-
         
-
         var cityName = $("#city-name");
         var temperature = $("#temperature");
         var humidity = $("#humidity");
         var wind = $("#wind");
         var UV = $("#UV");
 
-        
-        
 
         $("#search-button").on("click", function () {
             event.preventDefault();
@@ -143,6 +139,7 @@
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
+                console.log(response)
                 var cityNameEl = response.name;
                 cityName.text(cityNameEl);
 
@@ -156,32 +153,28 @@
                 var windEl = response.wind.speed;
                 wind.text("Wind Speed: " + windEl + " mph");
 
-                // localStorage.setItem("temp", response.main.temp)
-                // localStorage.setItem("humidity", response.main.humidity);
-                // localStorage.setItem("wind", response.wind.speed);
+
+                // lat an lon from first call: 
+                var lat = response.coord.lat; 
+                var lon = response.coord.lon; 
+
+// -------------now I am finding the UV index and getting the 5 day forecast ----------------------------------
+
+                var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+
+                $.ajax({
+                    url: queryURL,
+                    method: "GET"
+                }).then(function(response) { 
+                    
+                    var UVEl = parseFloat(response.current.uvi).toFixed(2);
+                    UV.text("UV Index: " + UVEl);
+
+                });
+
                 
-                
-               
+
             });
-
-            //     // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-
-            function renderWeatherData() {
-            //     var storedCity = localStorage.getItem("city-input");
-            //     cityName.text(storedCity);
-
-            //     var storedTemp = localStorage.getItem("temp");
-            //     temp.text(storedTemp);
-            
-            //     var storedHumidity = localStorage.getItem("humidity");
-            //     humidity.text(storedHumidity);
-
-            //     var storedWind = localStorage.getItem("wind");
-            // wind.text(storedWind);
-
-
-            }
-                renderWeatherData();
 
         });
 
