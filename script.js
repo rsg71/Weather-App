@@ -44,6 +44,10 @@ $(document).ready(function () {
             var cityNameEl = response.name;
             cityName.text(cityNameEl);
 
+
+
+            // setting todays Date
+
             var todayDate = $("#currentDay");
             var date = moment().format('l');
             todayDate.text(date)
@@ -122,23 +126,27 @@ $(document).ready(function () {
 
 
 
-
+                //Today's date weather logo
                 var weatherLogo = $("#weatherLogo");
 
                 var currentWeatherLogo = (response.daily[0].weather[0].icon)  
                 console.log(currentWeatherLogo);
-                weatherLogo.attr("src", "http://openweathermap.org/img/wn/10d@2x.png");
+                weatherLogo.attr("src", "http://openweathermap.org/img/wn/" + currentWeatherLogo + "@2x.png");
+
+
+                //weather icon for five forecast days
 
             });
-        });
-        var todoList = $("#todo-list");
-        var newTodoLi = $("<button>");
-        newTodoLi.text(cityInput);
-        newTodoLi.addClass("list-group-item list-group-item-action");
-        // i need to have it run the search again if I click this button
-        // newTodoLi.on("click", myfunc() );
 
-        todoList.append(newTodoLi)
+        });
+        var buttonList = $("#button-list");
+        var newCityButton = $("<button>");
+        newCityButton.text(cityInput);
+        newCityButton.addClass("list-group-item list-group-item-action");
+        // i need to have it run the search again if I click this button
+        // newCityButton.on("click", myfunc() );
+
+        buttonList.append(newCityButton)
     });
 
 

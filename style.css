@@ -36,3 +36,7 @@ button {
 .fas {
     color:white;
 }
+
+#currentDay {
+    font-weight:bold;
+}
