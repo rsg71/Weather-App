@@ -143,31 +143,18 @@
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-
-                console.log(response);
-                console.log(response.name);
-                console.log("temp: " + response.main.temp);
-                console.log("humidity: " + response.main.humidity);
-                console.log("wind: " + response.wind.speed);
-
-
                 var cityNameEl = response.name;
                 cityName.text(cityNameEl);
 
-
-                var tempEl = response.main.temp;
-                temperature.text("Temperature: " + tempEl + " °F");
+                var tempElFahrenheit = parseFloat(response.main.temp);
+                tempElFahrenheit = ((tempElFahrenheit - 273.15) * 1.80 + 32).toFixed(2);
+                temperature.text("Temperature: " + tempElFahrenheit + " °F");
 
                 var humidityEl = response.main.humidity;
                 humidity.text("Humidity: " + humidityEl + "%");
 
                 var windEl = response.wind.speed;
                 wind.text("Wind Speed: " + windEl + " mph");
-
-                // var temp = $("#temp");
-                // var humidity = $("#humidity");
-                // var wind = $("#wind");
-                // var UV = $("#UV");
 
                 // localStorage.setItem("temp", response.main.temp)
                 // localStorage.setItem("humidity", response.main.humidity);
