@@ -115,35 +115,24 @@
 
     <script type="text/javascript">
 
-
-
-
-
-
-
-
-
-
         // // This is our API key. Add your own API key between the ""
-        // var APIKey = "03de5e028a39ba0da41025c49291b0de";
+        var APIKey = "03de5e028a39ba0da41025c49291b0de";
 
         // // Here we are building the URL we need to query the database
         // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=Bujumbura,Burundi&appid=" + APIKey;
 
-        
         var cityName = $("#city-name");
-        var temp = $("#temp");
-        var humidity = $("#humidity");
-        var wind = $("#wind");
-        var UV = $("#UV");
-
-        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q="" cityName "&appid=" + APIKey;
 
 
-        function renderLastRegistered() {
-            var storedCity= localStorage.getItem("city-input");
+        // var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
+
+
+        function renderWeatherData() {
+            var storedCity = localStorage.getItem("city-input");
             cityName.text(storedCity);
-            
+
+
+
         }
 
         $("#search-button").on("click", function () {
@@ -152,28 +141,34 @@
             var cityInput = $("#city-input").val();
 
             localStorage.setItem("city-input", cityInput);
-            renderLastRegistered();
-            
+            renderWeatherData();
+
+            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
+
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+
+                console.log(response);
+                console.log(response.name);
+                console.log("temp: " + response.main.temp);
+                console.log("humidity: " + response.main.humidity);
+                console.log("wind: " + response.wind.speed);
+
+                var temp = $("#temp");
+                var humidity = $("#humidity");
+                var wind = $("#wind");
+                var UV = $("#UV");
+
+                localStorage.setItem("temp",response.main.temp)
+                localStorage.setItem("humidity", response.main.humidity);
+                localStorage.setItem("wind",response.wind.speed);
 
 
-            // // We then created an AJAX call
-            // $.ajax({
-            //     url: queryURL,
-            //     method: "GET"
-            // }).then(function (response) {
-
-            //     console.log(response);
-            //     console.log(response.name);
-            //     console.log("temp: " + response.main.temp);
-            //     console.log("humidity: "+response.main.humidity);
-            //     console.log("wind: "+response.wind.speed);
-
-
+            });
 
             //     // Hint: To convert from Kelvin to Fahrenheit: F = (K - 273.15) * 1.80 + 32
-
-
-            // });
 
         });
 
