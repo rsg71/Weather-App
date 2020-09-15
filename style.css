@@ -40,3 +40,11 @@ button {
 #currentDay {
     font-weight:bold;
 }
+
+.btn-success, .btn-warning, .btn-danger {
+    border-radius:4px;
+    margin-left:4px;
+    padding-right:4px;
+    padding-bottom:2px;
+}
+

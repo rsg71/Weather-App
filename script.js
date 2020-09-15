@@ -6,34 +6,43 @@ $(document).ready(function () {
     var temperature = $("#temperature");
     var humidity = $("#humidity");
     var wind = $("#wind");
-    var UV = $("#UV");
+    var UVspan = $("#UVspan");
+
+
+    // forecasted dates//
+    var forecastDay1 = $("#DayAhead1");
+    var futureDayOne = moment().add(1, 'days').calendar();
+    forecastDay1.text(futureDayOne);
+
+    var forecastDay2 = $("#DayAhead2");
+    var futureDayTwo = moment().add(2, 'days').calendar();
+    forecastDay2.text(futureDayTwo);
+
+    var forecastDay3 = $("#DayAhead3");
+    var futureDayThree = moment().add(3, 'days').calendar();
+    forecastDay3.text(futureDayThree);
+
+    var forecastDay4 = $("#DayAhead4");
+    var futureDayFour = moment().add(4, 'days').calendar();
+    forecastDay4.text(futureDayFour);
+    
+    var forecastDay4 = $("#DayAhead5");
+    var futureDayFive = moment().add(5, 'days').calendar();
+    forecastDay4.text(futureDayFive);
 
 
 
-
-
-
+    //creating search button and subsequent functions once clicked: 
     $("#search-button").on("click", function (event) {
         event.preventDefault();
 
-
-
         var cityInput = $("#city-input").val();
-
-
-        
-
-
-        // getting the current date with Moment.js?
-
-
 
 
         localStorage.setItem("city-input", cityInput);
         // renderWeatherData();
 
-
-
+        // setting the API key based on search terms
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
 
         $.ajax({
@@ -51,7 +60,6 @@ $(document).ready(function () {
             var todayDate = $("#currentDay");
             var date = moment().format('l');
             todayDate.text(date)
-
 
 
 
@@ -80,18 +88,27 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
                 console.log(response);
+
+
+
+                // forecasted UV index
                 var UVEl = parseFloat(response.current.uvi).toFixed(2);
-                UV.text("UV Index: " + UVEl);
+                UVspan.text(" " + UVEl);
+
+                if(UVEl >7) {
+                    UVspan.attr("class","btn-danger");
+                } 
+                else if (UVEl >3) {
+                    UVspan.attr("class","btn-warning");
+                }
+                else {
+                    UVspan.attr("class","btn-success")
+                }
+
+                
 
 
-                // var forecastTemp = $(".forecast-temp");
-                // forecastTemp.each(function(index) {
-                //     forecastTemp.text("Temp: " + response.daily[index].temp.day + " °F");
-
-                //    //same for humidity     
-                // })
-
-
+                // forecasted temperatures
                 var forecastTemp1 = parseFloat(response.daily[1].temp.day)
                 forecastTemp1 = ((forecastTemp1 - 273.15) * 1.80 + 32).toFixed(2);
 
@@ -107,9 +124,6 @@ $(document).ready(function () {
                 var forecastTemp5 = parseFloat(response.daily[5].temp.day)
                 forecastTemp5 = ((forecastTemp5 - 273.15) * 1.80 + 32).toFixed(2);
 
-
-
-
                 $(".Temp1").text("Temp: " + forecastTemp1 + " °F");
                 $(".Temp2").text("Temp: " + forecastTemp2 + " °F");
                 $(".Temp3").text("Temp: " + forecastTemp3 + " °F");
@@ -117,6 +131,7 @@ $(document).ready(function () {
                 $(".Temp5").text("Temp: " + forecastTemp5 + " °F");
 
 
+                // forecasted humidity
                 $(".Hum1").text("Humidity: " + response.daily[1].humidity)
                 $(".Hum2").text("Humidity: " + response.daily[2].humidity)
                 $(".Hum3").text("Humidity: " + response.daily[3].humidity)
@@ -125,47 +140,45 @@ $(document).ready(function () {
 
 
 
-
                 //Today's date weather logo
                 var weatherLogo = $("#weatherLogo");
 
-                var currentWeatherLogo = (response.daily[0].weather[0].icon)  
+                var currentWeatherLogo = (response.daily[0].weather[0].icon)
                 console.log(currentWeatherLogo);
                 weatherLogo.attr("src", "http://openweathermap.org/img/wn/" + currentWeatherLogo + "@2x.png");
 
                 console.log(response)
-                //weather icon for five forecast days
 
+
+
+                //forecasted weather icons
                 var weatherLogoDay1 = $("#weatherLogoDay1");
                 var currentweatherLogoDay1 = response.daily[1].weather[0].icon;
                 console.log(currentweatherLogoDay1);
-                weatherLogoDay1.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay1 + "@2x.png" )
-                
+                weatherLogoDay1.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay1 + "@2x.png")
+
                 var weatherLogoDay2 = $("#weatherLogoDay2");
                 var currentweatherLogoDay2 = response.daily[2].weather[0].icon;
                 console.log(currentweatherLogoDay2);
-                weatherLogoDay2.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay2 + "@2x.png" )
+                weatherLogoDay2.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay2 + "@2x.png")
 
 
                 var weatherLogoDay3 = $("#weatherLogoDay3");
                 var currentweatherLogoDay3 = response.daily[3].weather[0].icon;
                 console.log(currentweatherLogoDay3);
-                weatherLogoDay3.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay3 + "@2x.png" )
+                weatherLogoDay3.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay3 + "@2x.png")
 
 
                 var weatherLogoDay4 = $("#weatherLogoDay4");
                 var currentweatherLogoDay4 = response.daily[4].weather[0].icon;
                 console.log(currentweatherLogoDay4);
-                weatherLogoDay4.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay4 + "@2x.png" )
+                weatherLogoDay4.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay4 + "@2x.png")
 
 
                 var weatherLogoDay5 = $("#weatherLogoDay5");
                 var currentweatherLogoDay5 = response.daily[5].weather[0].icon;
                 console.log(currentweatherLogoDay5);
-                weatherLogoDay5.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay5 + "@2x.png" )
-
-               
-
+                weatherLogoDay5.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay5 + "@2x.png")
             });
 
         });
@@ -176,7 +189,7 @@ $(document).ready(function () {
         // i need to have it run the search again if I click this button
         // newCityButton.on("click", myfunc() );
 
-        buttonList.append(newCityButton)
+        buttonList.append(newCityButton);
     });
 
 
