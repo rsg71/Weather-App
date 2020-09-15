@@ -98,13 +98,13 @@ $(document).ready(function () {
                 var forecastTemp2 = parseFloat(response.daily[2].temp.day)
                 forecastTemp2 = ((forecastTemp2 - 273.15) * 1.80 + 32).toFixed(2);
 
-                var forecastTemp3 = parseFloat(response.daily[1].temp.day)
+                var forecastTemp3 = parseFloat(response.daily[3].temp.day)
                 forecastTemp3 = ((forecastTemp3 - 273.15) * 1.80 + 32).toFixed(2);
 
-                var forecastTemp4 = parseFloat(response.daily[1].temp.day)
+                var forecastTemp4 = parseFloat(response.daily[4].temp.day)
                 forecastTemp4 = ((forecastTemp4 - 273.15) * 1.80 + 32).toFixed(2);
 
-                var forecastTemp5 = parseFloat(response.daily[1].temp.day)
+                var forecastTemp5 = parseFloat(response.daily[5].temp.day)
                 forecastTemp5 = ((forecastTemp5 - 273.15) * 1.80 + 32).toFixed(2);
 
 
@@ -133,8 +133,38 @@ $(document).ready(function () {
                 console.log(currentWeatherLogo);
                 weatherLogo.attr("src", "http://openweathermap.org/img/wn/" + currentWeatherLogo + "@2x.png");
 
-
+                console.log(response)
                 //weather icon for five forecast days
+
+                var weatherLogoDay1 = $("#weatherLogoDay1");
+                var currentweatherLogoDay1 = response.daily[1].weather[0].icon;
+                console.log(currentweatherLogoDay1);
+                weatherLogoDay1.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay1 + "@2x.png" )
+                
+                var weatherLogoDay2 = $("#weatherLogoDay2");
+                var currentweatherLogoDay2 = response.daily[2].weather[0].icon;
+                console.log(currentweatherLogoDay2);
+                weatherLogoDay2.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay2 + "@2x.png" )
+
+
+                var weatherLogoDay3 = $("#weatherLogoDay3");
+                var currentweatherLogoDay3 = response.daily[3].weather[0].icon;
+                console.log(currentweatherLogoDay3);
+                weatherLogoDay3.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay3 + "@2x.png" )
+
+
+                var weatherLogoDay4 = $("#weatherLogoDay4");
+                var currentweatherLogoDay4 = response.daily[4].weather[0].icon;
+                console.log(currentweatherLogoDay4);
+                weatherLogoDay4.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay4 + "@2x.png" )
+
+
+                var weatherLogoDay5 = $("#weatherLogoDay5");
+                var currentweatherLogoDay5 = response.daily[5].weather[0].icon;
+                console.log(currentweatherLogoDay5);
+                weatherLogoDay5.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay5 + "@2x.png" )
+
+               
 
             });
 
