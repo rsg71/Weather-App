@@ -43,7 +43,7 @@
                         <li class="list-group-item list-group-item-action">Porta ac consectetur ac</li>
                     </ul> -->
 
-                    <div class="list-group"  id="todo-list">
+                    <div class="list-group" id="todo-list">
                     </div>
 
 
@@ -54,12 +54,11 @@
             <!-- city and five day forecast -->
             <div class="col-md-9">
                 <div class="row">
-                    <div class="big-card card bg-dark text-white">
-                        <img src="https://via.placeholder.com/1300x400" class="card-img" alt="...">
-                        <div class="card-img-overlay">
+                    <div class="card big-card">
+                        <div class="card-body big-card">
                             <h2 class="card-title" id="city-name">
-                                City Name<img id="weatherLogo"> <span id="currentDay"></span>
-                            </h2>
+                                City Name
+                            </h2><img id="weatherLogo"> <span id="currentDay"></span>
                             <p class="card-text" id="temperature">Temperature</p>
                             <p class="card-text" id="humidity">Humidity</p>
                             <p class="card-text" id="wind">Wind Speed</p>
@@ -73,47 +72,47 @@
                 </div>
                 <div class="row">
                     <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
-                        <div class="card-header" id="1">9/12/2020</div>
+                        <div class="card-header" id="1DayAhead">9/12/2020</div>
                         <div class="card-body">
                             <p class="card-text">Icon</p>
-                            <p class="card-text forecast-temp">Temp: 72.5 F </p>
-                            <p class="card-text forecast-humidity">Humidity: 14%</p>
+                            <p class="card-text forecast-temp Temp1">Temp: 72.5 F </p>
+                            <p class="card-text forecast-humidity Hum1">Humidity: 14%</p>
                         </div>
                     </div>
 
                     <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
-                        <div class="card-header" id="2">9/12/2020</div>
+                        <div class="card-header" id="2DayAhead">9/12/2020</div>
                         <div class="card-body">
                             <p class="card-text">Icon</p>
-                            <p class="card-text forecast-temp">Temp: 72.5 F </p>
-                            <p class="card-text forecast-humidity">Humidity: 14%</p>
+                            <p class="card-text forecast-temp Temp2">Temp: 72.5 F </p>
+                            <p class="card-text forecast-humidity Hum2">Humidity: 14%</p>
                         </div>
                     </div>
 
                     <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
-                        <div class="card-header" id="3">9/12/2020</div>
+                        <div class="card-header" id="3DayAhead">9/12/2020</div>
                         <div class="card-body">
                             <p class="card-text">Icon</p>
-                            <p class="card-text forecast-temp">Temp: 72.5 F </p>
-                            <p class="card-text forecast-humidity">Humidity: 14%</p>
+                            <p class="card-text forecast-temp Temp3">Temp: 72.5 F </p>
+                            <p class="card-text forecast-humidity Hum3">Humidity: 14%</p>
                         </div>
                     </div>
 
                     <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
-                        <div class="card-header" id="4">9/12/2020</div>
+                        <div class="card-header" id="4DayAhead">9/12/2020</div>
                         <div class="card-body">
                             <p class="card-text">Icon</p>
-                            <p class="card-text forecast-temp">Temp: 72.5 F </p>
-                            <p class="card-text forecast-humidity">Humidity: 14%</p>
+                            <p class="card-text forecast-temp Temp4">Temp: 72.5 F </p>
+                            <p class="card-text forecast-humidity Hum4">Humidity: 14%</p>
                         </div>
                     </div>
 
                     <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
-                        <div class="card-header" id="5">9/12/2020</div>
+                        <div class="card-header" id="5DayAhead">9/12/2020</div>
                         <div class="card-body">
                             <p class="card-text">Icon</p>
-                            <p class="card-text forecast-temp">Temp: 72.5 F </p>
-                            <p class="card-text forecast-humidity">Humidity: 14%</p>
+                            <p class="card-text forecast-temp Temp5">Temp: 72.5 F </p>
+                            <p class="card-text forecast-humidity Hum5">Humidity: 14%</p>
                         </div>
                     </div>
                 </div>
@@ -126,108 +125,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-    <script type="text/javascript">
-
-        // // This is our API key. Add your own API key between the ""
-        var APIKey = "03de5e028a39ba0da41025c49291b0de";
-
-        var cityName = $("#city-name");
-        var temperature = $("#temperature");
-        var humidity = $("#humidity");
-        var wind = $("#wind");
-        var UV = $("#UV");
-
-        
-        
-        $("#search-button").on("click", function () {
-            event.preventDefault();
-           
-            
-
-            var cityInput = $("#city-input").val();
-
-            localStorage.setItem("city-input", cityInput);
-            // renderWeatherData();
-
-            var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
-
-            $.ajax({
-                url: queryURL,
-                method: "GET"
-            }).then(function (response) {
-                // console.log(response)
-                var cityNameEl = response.name;
-                cityName.text(cityNameEl);
 
 
-                // getting the current date with Moment.js
-                
-
-
-
-                //back to the data grab
-                var tempElFahrenheit = parseFloat(response.main.temp);
-                tempElFahrenheit = ((tempElFahrenheit - 273.15) * 1.80 + 32).toFixed(2);
-                temperature.text("Temperature: " + tempElFahrenheit + " °F");
-
-                var humidityEl = response.main.humidity;
-                humidity.text("Humidity: " + humidityEl + "%");
-
-                var windEl = response.wind.speed;
-                wind.text("Wind Speed: " + windEl + " mph");
-
-
-                // lat an lon from first call: 
-                var lat = response.coord.lat;
-                var lon = response.coord.lon;
-
-                // -------------now I am finding the UV index and getting the 5 day forecast ----------------------------------
-
-                var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
-
-                $.ajax({
-                    url: queryURL,
-                    method: "GET"
-                }).then(function (response) {
-                    // console.log(response)
-                    var UVEl = parseFloat(response.current.uvi).toFixed(2);
-                    UV.text("UV Index: " + UVEl);
-
-
-                    for (var i = 0; i < 5; i++) {
-                        var forecastTemp = $(".forecast-temp");
-                        forecastTemp.text("Temp: " + response.daily[i].temp.day + " °F");
-
-                        var forecastHumidity = $(".forecast-humidity");
-                        forecastHumidity.text("Humidity: " + response.daily[i].humidity + "%");
-                    }
-
-
-
-
-
-                    // var weatherLogo = $("#weatherLogo");
-
-                    // // var currentWeatherLogo = (response.daily[0].weather[0].icon)  
-                    // // console.log(currentWeatherLogo);
-                    // weatherLogo.attr("src", "http://openweathermap.org/img/wn/10d@2x.png");
-
-                });
-            });
-                var todoList = $("#todo-list");
-                    var newTodoLi = $("<button>");
-                    newTodoLi.text(cityInput);
-                    newTodoLi.addClass("list-group-item list-group-item-action");
-                    // i need to have it run the search again if I click this button
-                    // newTodoLi.on("click", myfunc() );
-
-                    todoList.append(newTodoLi)
-        });
-
-        
-
-    </script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
-
