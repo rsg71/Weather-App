@@ -25,7 +25,7 @@ $(document).ready(function () {
     var forecastDay4 = $("#DayAhead4");
     var futureDayFour = moment().add(4, 'days').calendar();
     forecastDay4.text(futureDayFour);
-    
+
     var forecastDay4 = $("#DayAhead5");
     var futureDayFive = moment().add(5, 'days').calendar();
     forecastDay4.text(futureDayFive);
@@ -33,14 +33,55 @@ $(document).ready(function () {
 
 
     //creating search button and subsequent functions once clicked: 
+
+
+
     $("#search-button").on("click", function (event) {
         event.preventDefault();
 
         var cityInput = $("#city-input").val();
 
 
-        localStorage.setItem("city-input", cityInput);
-        // renderWeatherData();
+        localStorage.setItem("city-input", cityInput)
+
+
+        var buttonList = $("#button-list");
+        var newCityButton = $("<button>");
+        newCityButton.html(cityInput);
+        
+        newCityButton.attr("data", cityInput);
+        newCityButton.addClass("list-group-item list-group-item-action");
+        // i need to have it run the search again if I click this button
+    
+        // newCityButton.attr("click", renderWeatherData());
+        buttonList.append(newCityButton);
+    
+        // store city name in local storage each time search is run; recall the most recent city when necessary
+        //dont necessarily have to store in
+        
+        console.log("search button clicked");
+
+        renderWeatherData();
+    });
+
+    
+    $(document).on("click", ".list-group-item", function() {
+        console.log("new city button clicked");
+        console.log($(this));
+        var X = $(this).attr("data");
+        console.log(X);
+
+        localStorage.setItem("city-input", X);
+
+        renderWeatherData();
+    })
+
+
+    function renderWeatherData() {
+        //make the ajax call it's own function
+
+
+        cityInput = localStorage.getItem("city-input");
 
         // setting the API key based on search terms
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
@@ -53,13 +94,12 @@ $(document).ready(function () {
             var cityNameEl = response.name;
             cityName.text(cityNameEl);
 
-
-
             // setting todays Date
-
             var todayDate = $("#currentDay");
             var date = moment().format('l');
             todayDate.text(date)
+
+            // localStorage.setItem("temp",response.main.temp);
 
 
 
@@ -74,6 +114,11 @@ $(document).ready(function () {
             var windEl = response.wind.speed;
             wind.text("Wind Speed: " + windEl + " mph");
 
+            localStorage.setItem("humidity", humidityEl);
+            localStorage.setItem("wind", windEl)
+
+
+
 
             // lat an lon from first call: 
             var lat = response.coord.lat;
@@ -87,25 +132,27 @@ $(document).ready(function () {
                 url: queryURL,
                 method: "GET"
             }).then(function (response) {
-                console.log(response);
+                // console.log(response);
 
 
 
                 // forecasted UV index
                 var UVEl = parseFloat(response.current.uvi).toFixed(2);
-                UVspan.text(" " + UVEl);
+                UVspan.text(UVEl);
 
-                if(UVEl >7) {
-                    UVspan.attr("class","btn-danger");
-                } 
-                else if (UVEl >3) {
-                    UVspan.attr("class","btn-warning");
+                localStorage.setItem("UV", UVEl);
+
+                if (UVEl > 7) {
+                    UVspan.attr("class", "btn-danger");
+                }
+                else if (UVEl > 3) {
+                    UVspan.attr("class", "btn-warning");
                 }
                 else {
-                    UVspan.attr("class","btn-success")
+                    UVspan.attr("class", "btn-success")
                 }
 
-                
+
 
 
                 // forecasted temperatures
@@ -132,11 +179,11 @@ $(document).ready(function () {
 
 
                 // forecasted humidity
-                $(".Hum1").text("Humidity: " + response.daily[1].humidity)
-                $(".Hum2").text("Humidity: " + response.daily[2].humidity)
-                $(".Hum3").text("Humidity: " + response.daily[3].humidity)
-                $(".Hum4").text("Humidity: " + response.daily[4].humidity)
-                $(".Hum5").text("Humidity: " + response.daily[5].humidity)
+                $(".Hum1").text("Humidity: " + response.daily[1].humidity + "%");
+                $(".Hum2").text("Humidity: " + response.daily[2].humidity + "%");
+                $(".Hum3").text("Humidity: " + response.daily[3].humidity + "%");
+                $(".Hum4").text("Humidity: " + response.daily[4].humidity + "%");
+                $(".Hum5").text("Humidity: " + response.daily[5].humidity + "%");
 
 
 
@@ -144,57 +191,57 @@ $(document).ready(function () {
                 var weatherLogo = $("#weatherLogo");
 
                 var currentWeatherLogo = (response.daily[0].weather[0].icon)
-                console.log(currentWeatherLogo);
+                // console.log(currentWeatherLogo);
                 weatherLogo.attr("src", "http://openweathermap.org/img/wn/" + currentWeatherLogo + "@2x.png");
-
-                console.log(response)
-
 
 
                 //forecasted weather icons
                 var weatherLogoDay1 = $("#weatherLogoDay1");
                 var currentweatherLogoDay1 = response.daily[1].weather[0].icon;
-                console.log(currentweatherLogoDay1);
+                // console.log(currentweatherLogoDay1);
                 weatherLogoDay1.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay1 + "@2x.png")
 
                 var weatherLogoDay2 = $("#weatherLogoDay2");
                 var currentweatherLogoDay2 = response.daily[2].weather[0].icon;
-                console.log(currentweatherLogoDay2);
+                // console.log(currentweatherLogoDay2);
                 weatherLogoDay2.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay2 + "@2x.png")
 
 
                 var weatherLogoDay3 = $("#weatherLogoDay3");
                 var currentweatherLogoDay3 = response.daily[3].weather[0].icon;
-                console.log(currentweatherLogoDay3);
+                // console.log(currentweatherLogoDay3);
                 weatherLogoDay3.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay3 + "@2x.png")
 
 
                 var weatherLogoDay4 = $("#weatherLogoDay4");
                 var currentweatherLogoDay4 = response.daily[4].weather[0].icon;
-                console.log(currentweatherLogoDay4);
+                // console.log(currentweatherLogoDay4);
                 weatherLogoDay4.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay4 + "@2x.png")
 
 
                 var weatherLogoDay5 = $("#weatherLogoDay5");
                 var currentweatherLogoDay5 = response.daily[5].weather[0].icon;
-                console.log(currentweatherLogoDay5);
+                // console.log(currentweatherLogoDay5);
                 weatherLogoDay5.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay5 + "@2x.png")
+
+        
+
+
             });
 
         });
-        var buttonList = $("#button-list");
-        var newCityButton = $("<button>");
-        newCityButton.text(cityInput);
-        newCityButton.addClass("list-group-item list-group-item-action");
-        // i need to have it run the search again if I click this button
-        // newCityButton.on("click", myfunc() );
 
-        buttonList.append(newCityButton);
-    });
+      
+        
+
+    }
+     
+
+  
+    
 
 
-    // store city name in local storage each time search is run; recall the most recent city when necessary
-    //dont necessarily have to store in 
+
 
 
 })
