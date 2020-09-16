@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 
     //creating search button and subsequent functions once clicked: 
-
+    renderWeatherData();
 
 
     $("#search-button").on("click", function (event) {
