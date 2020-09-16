@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    // // This is our API key. Add your own API key between the ""
+    // // This is the first API key
     var APIKey = "03de5e028a39ba0da41025c49291b0de";
 
     var cityName = $("#city-name");
@@ -51,13 +51,7 @@ $(document).ready(function () {
         
         newCityButton.attr("data", cityInput);
         newCityButton.addClass("list-group-item list-group-item-action");
-        // i need to have it run the search again if I click this button
-    
-        // newCityButton.attr("click", renderWeatherData());
         buttonList.append(newCityButton);
-    
-        // store city name in local storage each time search is run; recall the most recent city when necessary
-        //dont necessarily have to store in
         
         console.log("search button clicked");
 
@@ -68,11 +62,10 @@ $(document).ready(function () {
     $(document).on("click", ".list-group-item", function() {
         console.log("new city button clicked");
         console.log($(this));
-        var X = $(this).attr("data");
-        console.log(X);
+        var cityDataName = $(this).attr("data");
+        console.log(cityDataName);
 
-        localStorage.setItem("city-input", X);
-
+        localStorage.setItem("city-input", cityDataName);
         renderWeatherData();
     })
 
@@ -99,9 +92,6 @@ $(document).ready(function () {
             var date = moment().format('l');
             todayDate.text(date)
 
-            // localStorage.setItem("temp",response.main.temp);
-
-
 
             //back to the data grab
             var tempElFahrenheit = parseFloat(response.main.temp);
@@ -119,7 +109,6 @@ $(document).ready(function () {
 
 
 
-
             // lat an lon from first call: 
             var lat = response.coord.lat;
             var lon = response.coord.lon;
@@ -133,8 +122,6 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (response) {
                 // console.log(response);
-
-
 
                 // forecasted UV index
                 var UVEl = parseFloat(response.current.uvi).toFixed(2);
@@ -151,8 +138,6 @@ $(document).ready(function () {
                 else {
                     UVspan.attr("class", "btn-success")
                 }
-
-
 
 
                 // forecasted temperatures
@@ -184,7 +169,6 @@ $(document).ready(function () {
                 $(".Hum3").text("Humidity: " + response.daily[3].humidity + "%");
                 $(".Hum4").text("Humidity: " + response.daily[4].humidity + "%");
                 $(".Hum5").text("Humidity: " + response.daily[5].humidity + "%");
-
 
 
                 //Today's date weather logo
@@ -223,25 +207,7 @@ $(document).ready(function () {
                 var currentweatherLogoDay5 = response.daily[5].weather[0].icon;
                 // console.log(currentweatherLogoDay5);
                 weatherLogoDay5.attr("src", "http://openweathermap.org/img/wn/" + currentweatherLogoDay5 + "@2x.png")
-
-        
-
-
             });
-
         });
-
-      
-        
-
     }
-     
-
-  
-    
-
-
-
-
-
 })
