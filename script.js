@@ -38,6 +38,7 @@ $(document).ready(function () {
 
     $("#search-button").on("click", function (event) {
         event.preventDefault();
+        
 
         var cityInput = $("#city-input").val();
 
