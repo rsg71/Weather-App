@@ -19,48 +19,114 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-dark bg-dark">
+        <span class="navbar-brand mx-auto h1">Weather Dashboard </span>
 
+    </nav>
+    <br>
     <div class="container-fluid">
-        <nav class="navbar navbar-dark bg-dark">
-            <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
-            <i class="fas fa-cloud-sun"></i>
-        </nav>
 
-        <div class="row big-row">
+
+        <div class="row">
             <!-- aside (search bar and city list) -->
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <aside>
-                    <label class="city-search">Search for a City:</label>
-                    <form>
-                        <input type="search" placeholder="Philadelphia" id="city-input">
-                        <button id="search-button"><i class="fas fa-search"></i></button>
-                    </form>
 
+                    <label class="city-search">Search for a City:</label>
+                    <div class="input-group mb-3">
+                        <input type="search" id="city-input" class="form-control" placeholder="Chicago"
+                            aria-label="Chicago" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button id="search-button" class="btn btn-primary" type="button"
+                                id="button-addon2">Search</button>
+                        </div>
+                    </div>
                     <div class="list-group" id="button-list">
                     </div>
+
                 </aside>
             </div>
             <!-- city and five day forecast -->
-            <div class="col-md-9">
+            <div class="col-md-8">
                 <div class="row">
                     <div class="card big-card">
-                        <div class="card-body big-card">
+                        <div class="card-body">
                             <h2 class="card-title" id="city-name">
                                 City Name
                             </h2><img id="weatherLogo"> <span id="currentDay"></span>
-                            <p class="card-text" id="temperature">Temperature:</p>
+                            <h4 class="mb-3" id="temperature">Temperature:</h4>
                             <p class="card-text" id="humidity">Humidity:</p>
-                            <i class="fas fa-wind"></i><p class="card-text" id="wind">Wind Speed:</p>
+                            <p class="card-text" id="wind">Wind Speed:</p>
                             <p class="card-text" id="UV">UV Index:<span id="UVspan"></span></p>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <br>
+
+                <div class="row five-day-forecast">
                     <h3>5-Day Forecast</h3>
                 </div>
+
+                <br>
+
+
                 <div class="row forecasted-days">
-                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card-deck" style="width:100%;">
+                        <!-- <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a longer card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div> -->
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title" id="DayAhead1"></h5>
+                                <img id="weatherLogoDay1">
+                                <p class="card-text forecast-temp Temp1">Temp:</p>
+                                <p class="card-text forecast-humidity Hum1">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title" id="DayAhead2"></h5>
+                                <img id="weatherLogoDay2">
+                                <p class="card-text forecast-temp Temp2">Temp:</p>
+                                <p class="card-text forecast-humidity Hum1">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title" id="DayAhead3"></h5>
+                                <img id="weatherLogoDay3">
+                                <p class="card-text forecast-temp Temp3">Temp:</p>
+                                <p class="card-text forecast-humidity Hum1">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title" id="DayAhead4"></h5>
+                                <img id="weatherLogoDay4">
+                                <p class="card-text forecast-temp Temp4">Temp:</p>
+                                <p class="card-text forecast-humidity Hum1">Humidity:</p>
+                            </div>
+                        </div>
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <h5 class="card-title" id="DayAhead5"></h5>
+                                <img id="weatherLogoDay5">
+                                <p class="card-text forecast-temp Temp5">Temp:</p>
+                                <p class="card-text forecast-humidity Hum1">Humidity:</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row forecasted-days card-deck">
+                    <div class="card text-white bg-primary mb-3 ">
                         <div class="card-header" id="DayAhead1"></div>
                         <div class="card-body">
                             <img id="weatherLogoDay1">
@@ -69,7 +135,7 @@
                         </div>
                     </div>
 
-                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card text-white bg-primary mb-3 ">
                         <div class="card-header" id="DayAhead2"></div>
                         <div class="card-body">
                             <img id="weatherLogoDay2">
@@ -78,7 +144,7 @@
                         </div>
                     </div>
 
-                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card text-white bg-primary mb-3 ">
                         <div class="card-header" id="DayAhead3"></div>
                         <div class="card-body">
                             <img id="weatherLogoDay3">
@@ -87,7 +153,7 @@
                         </div>
                     </div>
 
-                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card text-white bg-primary mb-3 ">
                         <div class="card-header" id="DayAhead4"></div>
                         <div class="card-body">
                             <img id="weatherLogoDay4">
@@ -96,7 +162,7 @@
                         </div>
                     </div>
 
-                    <div class="card text-white bg-primary mb-3" style="max-width: 14rem;">
+                    <div class="card text-white bg-primary mb-3 ">
                         <div class="card-header" id="DayAhead5"></div>
                         <div class="card-body">
                             <img id="weatherLogoDay5">
@@ -104,8 +170,9 @@
                             <p class="card-text forecast-humidity Hum5">Humidity:</p>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
+            <div class="col-md-2"></div>
         </div>
 
     </div>

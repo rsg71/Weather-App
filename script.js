@@ -43,6 +43,11 @@ $(document).ready(function () {
         var cityInput = $("#city-input").val();
 
 
+        if (!cityInput) {
+            alert('Please enter a city')
+            return;
+        }
+
         localStorage.setItem("city-input", cityInput)
 
 
@@ -52,7 +57,7 @@ $(document).ready(function () {
         
         newCityButton.attr("data", cityInput);
         newCityButton.addClass("list-group-item list-group-item-action");
-        buttonList.append(newCityButton);
+        buttonList.prepend(newCityButton);
         
         console.log("search button clicked");
 

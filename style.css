@@ -1,7 +1,5 @@
 .navbar {
     width:100%;
-    margin-left:0px;
-    margin-right:0px;
     justify-content:center;
 }
 
@@ -14,27 +12,18 @@ form {
 }
 
 .big-card {
-    margin-top:20px;
-    margin-bottom:10px;
-    width:46vw;
+    width:100%;
 }
 
-.card {
-    margin-right:40px;
-}
 .city-search {
     font-size:2rem;
     font-weight:bold;
 }
 
-button {
-    background-color:rgb(0,123,255);
-    border-color:rgb(0,123,255);
-    border-radius:5px;
-}
+
 
 .fas {
-    color:white;
+    color:black;
 }
 
 #currentDay {
@@ -48,4 +37,22 @@ button {
     padding-bottom:2px;
     padding-left:4px;
 }
+
+
+.card-header {
+    font-size: .9rem;
+}
+
+/* testing purposes */
+
+/* .five-day-forecast {
+    background-color:red;
+
+} */
+
+/* .forecasted-days {
+    background-color: yellow;
+    outline: 1px solid red;   
+} */
+
 
