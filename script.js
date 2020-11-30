@@ -36,12 +36,41 @@ $(document).ready(function () {
     renderWeatherData();
 
 
+    
+
+    
+    $("#city-input").on('keyup', function (e) {
+        e.preventDefault();
+        if (e.key === 'Enter' || e.keyCode === 13) {
+            var cityInput = $("#city-input").val();
+            if (!cityInput) {
+                alert('Please enter a city')
+                return;
+            }
+            localStorage.setItem("city-input", cityInput)
+
+            var buttonList = $("#button-list");
+            var newCityButton = $("<button>");
+            newCityButton.html(cityInput);
+            
+            newCityButton.attr("data", cityInput);
+            newCityButton.addClass("list-group-item list-group-item-action");
+            buttonList.prepend(newCityButton);
+            
+            console.log("search button clicked");
+    
+
+            $("#city-input").val('')
+        }
+       
+        renderWeatherData();
+    });
+
     $("#search-button").on("click", function (event) {
         event.preventDefault();
         
 
         var cityInput = $("#city-input").val();
-
 
         if (!cityInput) {
             alert('Please enter a city')
@@ -62,6 +91,9 @@ $(document).ready(function () {
         console.log("search button clicked");
 
         renderWeatherData();
+
+        $("#city-input").val('')
+
     });
 
     

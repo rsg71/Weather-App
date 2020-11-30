@@ -1,6 +1,7 @@
 .navbar {
     width:100%;
     justify-content:center;
+    background-color: rgba(10, 109, 214, 0.827) !important;
 }
 
 .navbar-brand {
@@ -41,6 +42,11 @@ form {
 
 .card-header {
     font-size: .9rem;
+}
+
+
+.list-group {
+    margin-bottom: 20px;
 }
 
 /* testing purposes */
