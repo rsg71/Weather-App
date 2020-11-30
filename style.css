@@ -1,5 +1,4 @@
 .navbar {
-    width:100%;
     justify-content:center;
     background-color: rgba(10, 109, 214, 0.827) !important;
 }
@@ -12,9 +11,6 @@ form {
     margin-bottom:1rem;
 }
 
-.big-card {
-    width:100%;
-}
 
 .city-search {
     font-size:2rem;
@@ -23,8 +19,13 @@ form {
 
 
 
-.fas {
-    color:black;
+.card-deck p {
+    font-size: 0.8em
+}
+
+
+.card-title {
+    font-size: 15px;
 }
 
 #currentDay {
@@ -39,26 +40,24 @@ form {
     padding-left:4px;
 }
 
-
-.card-header {
-    font-size: .9rem;
-}
-
-
 .list-group {
     margin-bottom: 20px;
 }
 
-/* testing purposes */
-
-/* .five-day-forecast {
-    background-color:red;
-
-} */
-
-/* .forecasted-days {
-    background-color: yellow;
-    outline: 1px solid red;   
-} */
 
 
+@media screen and (max-width: 768px) {
+    .navbar-brand {
+        font-size: 2rem;
+    }
+}
+
+
+@media screen and (max-width: 576px) {
+    .card-title {
+        font-size: 1.2em;
+    }
+    .card-deck p {
+        font-size: 1.2em
+    }
+}
