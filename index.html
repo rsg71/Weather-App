@@ -5,10 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+        <link rel="apple-touch-icon-precomposed" sizes="57x57" href="favicomatic/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="favicomatic/apple-touch-icon-114x114.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="favicomatic/apple-touch-icon-72x72.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="favicomatic/apple-touch-icon-144x144.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="60x60" href="favicomatic/apple-touch-icon-60x60.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="favicomatic/apple-touch-icon-120x120.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="76x76" href="favicomatic/apple-touch-icon-76x76.png" />
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="favicomatic/apple-touch-icon-152x152.png" />
+        <link rel="icon" type="image/png" href="favicomatic/favicon-196x196.png" sizes="196x196" />
+        <link rel="icon" type="image/png" href="favicomatic/favicon-96x96.png" sizes="96x96" />
+        <link rel="icon" type="image/png" href="favicomatic/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="favicomatic/favicon-16x16.png" sizes="16x16" />
+        <link rel="icon" type="image/png" href="favicomatic/favicon-128.png" sizes="128x128" />
+        <meta name="application-name" content="&nbsp;"/>
+        <meta name="msapplication-TileColor" content="#FFFFFF" />
+        <meta name="msapplication-TileImage" content="mstile-144x144.png" />
+        <meta name="msapplication-square70x70logo" content="mstile-70x70.png" />
+        <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
+        <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
+        <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
+        
 
     <link rel="stylesheet" href="style.css">
 
@@ -32,11 +57,11 @@
             <div class="col-lg-3">
                 <label class="city-search">Search for a City:</label>
                 <div class="input-group input-group-lg mb-3">
-                    <input type="text" id="city-input" class="form-control" placeholder="Chicago" aria-label="Chicago"
+                    <input type="text" id="city-input" class="form-control" placeholder="Search city..." aria-label="Chicago"
                         aria-describedby="button-addon2">
                     <div class="input-group-append">
                         <button id="search-button" class="btn btn-primary" type="button"
-                            id="button-addon2">Search</button>
+                            id="button-addon2"><i class="fas fa-search"></i></button>
                     </div>
                 </div>
                 <div class="list-group" id="button-list">
@@ -74,7 +99,7 @@
                         <div class="card-deck">
                             <div class="card bg-primary text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title" id="DayAhead1"></h5>
+                                    <h5 class="card-title forecast" id="DayAhead1"></h5>
                                     <img id="weatherLogoDay1">
                                     <p class="card-text forecast-temp Temp1">Temp:</p>
                                     <p class="card-text forecast-humidity Hum1">Humidity:</p>
@@ -82,7 +107,7 @@
                             </div>
                             <div class="card bg-primary text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title" id="DayAhead2"></h5>
+                                    <h5 class="card-title forecast" id="DayAhead2"></h5>
                                     <img id="weatherLogoDay2">
                                     <p class="card-text forecast-temp Temp2">Temp:</p>
                                     <p class="card-text forecast-humidity Hum1">Humidity:</p>
@@ -90,7 +115,7 @@
                             </div>
                             <div class="card bg-primary text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title" id="DayAhead3"></h5>
+                                    <h5 class="card-title forecast" id="DayAhead3"></h5>
                                     <img id="weatherLogoDay3">
                                     <p class="card-text forecast-temp Temp3">Temp:</p>
                                     <p class="card-text forecast-humidity Hum1">Humidity:</p>
@@ -98,7 +123,7 @@
                             </div>
                             <div class="card bg-primary text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title" id="DayAhead4"></h5>
+                                    <h5 class="card-title forecast" id="DayAhead4"></h5>
                                     <img id="weatherLogoDay4">
                                     <p class="card-text forecast-temp Temp4">Temp:</p>
                                     <p class="card-text forecast-humidity Hum1">Humidity:</p>
@@ -106,7 +131,7 @@
                             </div>
                             <div class="card bg-primary text-white">
                                 <div class="card-body">
-                                    <h5 class="card-title" id="DayAhead5"></h5>
+                                    <h5 class="card-title forecast" id="DayAhead5"></h5>
                                     <img id="weatherLogoDay5">
                                     <p class="card-text forecast-temp Temp5">Temp:</p>
                                     <p class="card-text forecast-humidity Hum1">Humidity:</p>

@@ -18,7 +18,7 @@ https://rsg71.github.io/Weather-App/
 
 ## Usage 
 
-<img src="Weather App gif.gif"  alt="weather app gif">
+<img src="imgs/weather_app.gif"  alt="weather app gif">
 
 
 # Contact Information: 

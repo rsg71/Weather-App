@@ -1,6 +1,6 @@
 .navbar {
     justify-content:center;
-    background-color: rgba(10, 109, 214, 0.827) !important;
+    background-color: rgb(52,58,64) !important;
 }
 
 .navbar-brand {
@@ -24,7 +24,7 @@ form {
 }
 
 
-.card-title {
+.forecast {
     font-size: 15px;
 }
 
@@ -54,7 +54,7 @@ form {
 
 
 @media screen and (max-width: 576px) {
-    .card-title {
+    .forecast {
         font-size: 1.2em;
     }
     .card-deck p {
