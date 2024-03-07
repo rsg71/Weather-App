@@ -1,6 +1,5 @@
 $(document).ready(function () {
     // // This is the first API key
-    var APIKey = "03de5e028a39ba0da41025c49291b0de";
 
     var cityName = $("#city-name");
     var temperature = $("#temperature");
@@ -114,14 +113,15 @@ $(document).ready(function () {
 
         cityInput = localStorage.getItem("city-input");
 
+        var weatherApi = "https://weatherapi20240305190422.azurewebsites.net/Weather";
+
         // setting the API key based on search terms
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + "&appid=" + APIKey;
+        var queryURL = `${weatherApi}?city=` + cityInput;
 
         $.ajax({
             url: queryURL,
             method: "GET"
         }).then(function (response) {
-            // console.log(response)
             var cityNameEl = response.name;
             cityName.text(cityNameEl);
 
@@ -143,23 +143,22 @@ $(document).ready(function () {
             wind.text("Wind Speed: " + windEl + " mph");
 
             localStorage.setItem("humidity", humidityEl);
-            localStorage.setItem("wind", windEl)
+            localStorage.setItem("wind", windEl);
 
 
-
-            // lat an lon from first call: 
+            // lat an lon from first call:
             var lat = response.coord.lat;
             var lon = response.coord.lon;
 
             // -------------now I am finding the UV index and getting the 5 day forecast ----------------------------------
 
-            var queryURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + APIKey;
+            var queryURL_lat_lon = `${weatherApi}/uv?lat=${lat}&lon=${lon}`;
+
 
             $.ajax({
-                url: queryURL,
+                url: queryURL_lat_lon,
                 method: "GET"
             }).then(function (response) {
-                // console.log(response);
 
                 // forecasted UV index
                 var UVEl = parseFloat(response.current.uvi).toFixed(2);
